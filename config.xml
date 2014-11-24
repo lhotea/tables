@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "ch.asltel.phonegap.bill2mobile"
+        id          = "ch.asltel.phonegap.tables"
         versionCode = "10" 
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->
 
-    <name>Bill2Mobile</name>
+    <name>Tables</name>
 
     <description>
     </description>
@@ -17,7 +17,7 @@
     </author>
 <gap:platform name="ios" />
 <gap:platform name="android" />
-<preference name="phonegap-version" value="3.3.0" />
+<preference name="phonegap-version" value="3.6.3" />
 <preference name="fullscreen" value="true" />
 <access origin="http://upc.ch" subdomains="true" />
 <access origin="http://mockable.io" subdomains="true" />
