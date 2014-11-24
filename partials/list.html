@@ -1,0 +1,20 @@
+<ion-view title="Reihen auswählen" hide-back-button="true">
+			
+	
+
+<ion-content>
+	
+<ion-checkbox ng-repeat="table in tableList"
+                      ng-model="table.checked" 
+                      ng-checked="table.checked">
+          {{ table.text }}
+</ion-checkbox>
+               
+<button ng-click="startGame()" class="button button-block button-positive">
+  Starten
+</button>
+</ion-content>
+
+
+	
+</ion-view>

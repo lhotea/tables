@@ -1,0 +1,31 @@
+<ion-view title="Lösen">
+<ion-content>
+
+<div class="row">
+	<div class="col col-center center">
+		<div class="question">{{riddle.table}}</div>
+		<div class="question">x</div>
+		<div class="question">{{riddle.times}}</div>
+		<div class="question">=</div>
+	</div>
+</div>
+	
+<div class="row responsive-sm">
+	<div class="col col-center center" ng-repeat="answer in riddle.answers">
+		<div class="answerButton" ng-click="check({{answer.value}})">{{answer.value}}</div>
+	</div>
+</div>
+    
+<div class="row">
+<div class="col col-center">
+<div class="range range-positive">
+  <i class="icon ion-sad"></i>
+  <input type="range" disabled name="score" min="0" max="20" value="{{score}}" ng-model="score">
+  <i class="icon ion-happy"></i>
+</div>
+	</div>
+	</div>	
+</ion-content>
+
+	
+</ion-view>
