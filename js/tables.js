@@ -126,7 +126,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
+		app.controller('listController', function($scope,$state,$ionicPopup,tables) {
 
 			$scope.tableList = [
     { text: "1", checked: true },
