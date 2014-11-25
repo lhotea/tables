@@ -82,7 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
 			$ionicPlatform.ready(function() {
-             document.addEventListener("backbutton", onBackKeyPress, false);
+             onDeviceReady();
 	  
             });
 		    $scope.score = 0;
@@ -123,14 +123,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 						 
 			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-//									navigator.vibrate([100,100,100]);
+				if (typeof device != "undefined" && device.platform == "Android")									
+					navigator.vibrate([100,100,100]);
 					                $scope.score++;
 									$scope.correct++;
  									$scope.riddle = generateRiddle(tables);
 					
 			    } 
 				else {
-//					navigator.vibrate(500);
+				if (typeof device != "undefined" && device.platform == "Android")									
+					navigator.vibrate([500]);
   				    jQuery(event.target).addClass("wrong");
 					$scope.wrong++;
 					if ($scope.score > 0) 
@@ -152,8 +154,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
 			$ionicPlatform.ready(function() {
-             document.addEventListener("backbutton", onBackKeyPress, false);
-	  
+             onDeviceReady();	  
             });
 
 			$scope.tableList = [
