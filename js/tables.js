@@ -58,7 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
 
-				
+			$scope.canExit = $ionicPlatform.isAndroid();
 			$scope.score = 0;
 			$scope.target = 20;
 			$scope.correct = 0;
