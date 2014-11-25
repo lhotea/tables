@@ -61,6 +61,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 		/* services to share data between views */
 
+app.service( 'HardwareBackButtonManager', function($ionicPlatform){
+  this.deregister = undefined;
+ 
+  this.disable = function(){
+    this.deregister = $ionicPlatform.registerBackButtonAction(function(e){
+	e.preventDefault();
+	return false;
+    }, 101);
+  };
+ 
+  this.enable = function(){
+    if( this.deregister !== undefined ){
+      this.deregister();
+      this.deregister = undefined;
+    }
+  };
+  return this;
+});
+
+
 		app.service('listService', function($q) {
 			return {
 				list: [],
@@ -70,8 +90,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			};
 		});
 		/* controllers */
-		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
-		    $scope.score = 0;
+		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables, HardwareBackButtonManager) {
+
+	
+	HardwareBackButtonManager.disable();
+				
+			$scope.score = 0;
 			$scope.target = 20;
 			$scope.correct = 0;
 			$scope.wrong = 0;
@@ -138,7 +162,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
+		app.controller('listController', function($scope,$state,$ionicPlatform,tables, HardwareBackButtonManager) {
+	HardwareBackButtonManager.disable();
 
 			$scope.tableList = [
     { text: "1", checked: true },
