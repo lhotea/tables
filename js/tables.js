@@ -13,14 +13,19 @@ app.run(
 function($ionicPlatform) {
   $ionicPlatform.ready( function() {
    alert("Hello Antoine");
-   $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
-   $ionicPlatform.on("backbutton", onBackKeyPress);
-   $ionicPlatform.onHardwareBackButton(onBackKeyPress);  
+   //$ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
+   //$ionicPlatform.on("backbutton", onBackKeyPress);
+   $ionicPlatform.onHardwareBackButton(function (e) {
+		alert("Wanna go back (1)?");
+		e.preventDefault();
+	    e.stopPropagation();
+        return false;
+    });  
   });
-  $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
+  /*$ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
   $ionicPlatform.on("backbutton", onBackKeyPress);
   $ionicPlatform.onHardwareBackButton(onBackKeyPress);
-
+*/
 });	
  
 app.config(function($stateProvider, $urlRouterProvider) {
