@@ -61,19 +61,33 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, tables) {
 		    $scope.score = 0;
+			var numResults = 5;
+			var maxMultiple = 12;
+			
+			var getUniquePossibleResult = function (arr, tables, max) {
+				var val = 0;
+				do {
+			     val = tables[Math.floor(Math.random() * (tables.length) )] * Math.floor(Math.random() * max);
+				}
+				while ( jQuery.inArray(val ,arr) > -1);
+			    return val;		
+			};
+			
 			var generateRiddle = function (tables) {
+
 				var riddle = { table: tables[Math.floor(Math.random() * (tables.length) )],
 							   times: Math.floor(Math.random() * 11),
 							 };
-				riddle.answers = [ {index:1, value:riddle.table * riddle.times} , 
-								{index:2, value:tables[Math.floor(Math.random() * (tables.length) )] * Math.floor(Math.random() * 11)}, 
-								{index:3, value:tables[Math.floor(Math.random() * (tables.length) )] * Math.floor(Math.random() * 11)},
-								{index:4, value:tables[Math.floor(Math.random() * (tables.length) )] * Math.floor(Math.random() * 11)},
-								{index:5, value:tables[Math.floor(Math.random() * (tables.length) )] * Math.floor(Math.random() * 11)}
-							   ];
-				riddle.answers.sort(function(a, b) {
-  return a.value - b.value;
-});
+                var answers = [riddle.table * riddle.times];
+				while ( answers.push(getUniquePossibleResult(answers,tables,maxMultiple)) < numResults );
+				answers.sort( function(a, b) {
+                  return a - b;
+                });
+				riddle.answers = [];
+				jQuery.each( answers, function (index,value) {
+ 				 riddle.answers.push( {index: index, value: value} ); 
+				});
+				
 				return riddle;
 	  	    };
 
