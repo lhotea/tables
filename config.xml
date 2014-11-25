@@ -15,10 +15,11 @@
     <author href="https://build.phonegap.com" email="support@phonegap.com">
         Arnaud L'Hôte  
     </author>
-
-<feature name="App">
-         <param name="android-package" value="org.apache.cordova.App" />
-</feature>
+		
+<gap:plugin name="org.apache.cordova.app" />
+<gap:plugin name="org.apache.cordova.device" />
+<gap:plugin name="org.apache.cordova.vibration" />
+		
 <gap:platform name="ios" />
 <gap:platform name="android" />
 <preference name="phonegap-version" value="3.6.3" />
