@@ -115,7 +115,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     { text: "8", checked: false },
     { text: "9", checked: false },
     { text: "10", checked: false },
-    { text: "11", checked: false }
+    { text: "11", checked: false },
+				{text: "12", checked: false }
 			
 			
 				
