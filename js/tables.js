@@ -6,21 +6,20 @@ function onBackKeyPress(e) {
         return false;
 }
 
-function onDeviceReady() {
-  ionic.Platform.registerBackButtonAction(onBackKeyPress,1000);
-  ionic.Platform.on("backbutton", onBackKeyPress);
-  ionic.Platform.onHardwareBackButton(onBackKeyPress);
-}
-
 var app = angular.module('tables', ['ionic']);
 
 
 app.run(
 function($ionicPlatform) {
-  $ionicPlatform.ready(onDeviceReady);
+  $ionicPlatform.ready( function() {
+   $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
+   $ionicPlatform.on("backbutton", onBackKeyPress);
+   $ionicPlatform.onHardwareBackButton(onBackKeyPress);  
+  });
   $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
   $ionicPlatform.on("backbutton", onBackKeyPress);
   $ionicPlatform.onHardwareBackButton(onBackKeyPress);
+
 });	
  
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -65,7 +64,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		});
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
-			ionic.Platform.ready(onDeviceReady);
 		    $scope.score = 0;
 			$scope.target = 20;
 			$scope.correct = 0;
@@ -134,9 +132,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
-			$ionicPlatform.ready(function() {
-             onDeviceReady();	  
-            });
 
 			$scope.tableList = [
     { text: "1", checked: true },
