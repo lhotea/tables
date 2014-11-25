@@ -5,17 +5,21 @@ function onBackKeyPress(e) {
 	    e.stopPropagation();
         return false;
 }
-function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
 
     // device APIs are available
     //
 function onDeviceReady() {
         // Register the event listener
-        document.addEventListener("backbutton", onBackKeyPress, false);
+        document.addEventListener("backbutton", onBackKeyPress, true);
 }
 
+function init() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+} 
+
+function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+}
 
 var app = angular.module('tables', ['ionic']);
 app.run(
