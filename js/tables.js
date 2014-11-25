@@ -10,7 +10,13 @@ function onBackKeyPress(e) {
     //
 function onDeviceReady() {
         // Register the event listener
-        document.addEventListener("backbutton", onBackKeyPress, true);
+		alert("device ready ! Setting Backbuttonhandler");
+
+	if (typeof device != "undefined" && device.platform == "Android")
+   {
+    navigator.app.overrideBackbutton(true);
+   }
+   document.addEventListener("backbutton", onBackKeyPress, true);
 }
 
 function init() {
