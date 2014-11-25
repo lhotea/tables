@@ -153,4 +153,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					tables.push(elem.text); });
 				$state.go('game');
 				};
+			
+			$scope.endGame = function(){
+             $ionicPopup.confirm({
+             title: 'Spiel benden ?',
+             content: 'Willst du das spiel wirklich beenden ?'
+             }).then(function(res) {
+             if(res) {
+              $ionicPlatform.exitApp();
+             }
+            });
+          };
 		});
