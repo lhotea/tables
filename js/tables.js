@@ -10,7 +10,7 @@ function onBackKeyPress(e) {
     //
 function onDeviceReady() {
         // Register the event listener
-		alert("device ready ! Setting Backbuttonhandler");
+		// alert("device ready ! Setting Backbuttonhandler");
 
 	if (typeof device != "undefined" && device.platform == "Android")
    {
