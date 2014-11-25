@@ -18,7 +18,6 @@ var app = angular.module('tables', ['ionic']);
 app.run(
 function($ionicPlatform) {
   $ionicPlatform.ready(onDeviceReady);
-  alert("Hello again");
   $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
   $ionicPlatform.on("backbutton", onBackKeyPress);
   $ionicPlatform.onHardwareBackButton(onBackKeyPress);
