@@ -160,7 +160,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
              content: 'Willst du das Spiel wirklich beenden ?'
              }).then(function(res) {
              if(res) {
-              $ionicPlatform.exitApp();
+			  navigator.app.exitApp(); 
              }
             });
           };
