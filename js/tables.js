@@ -6,38 +6,23 @@ function onBackKeyPress(e) {
         return false;
 }
 
-    // device APIs are available
-    //
 function onDeviceReady() {
-        // Register the event listener
-		// alert("device ready ! Setting Backbuttonhandler");
-
-	if (typeof device != "undefined" && device.platform == "Android")
-   {
-    navigator.app.overrideBackbutton(true);
-   }
-   document.addEventListener("backbutton", onBackKeyPress, true);
-}
-
-function init() {
-    document.addEventListener("deviceready", onDeviceReady, false);
-} 
-
-function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
+  ionic.Platform.registerBackButtonAction(onBackKeyPress,1000);
+  ionic.Platform.on("backbutton", onBackKeyPress);
+  ionic.Platform.onHardwareBackButton(onBackKeyPress);
 }
 
 var app = angular.module('tables', ['ionic']);
+
+
 app.run(
 function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-  document.addEventListener("backbutton", onBackKeyPress, false);
-	  
-});
-});
-
-			
-	
+  $ionicPlatform.ready(onDeviceReady);
+  alert("Hello again");
+  $ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
+  $ionicPlatform.on("backbutton", onBackKeyPress);
+  $ionicPlatform.onHardwareBackButton(onBackKeyPress);
+});	
  
 app.config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
@@ -81,10 +66,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		});
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
-			$ionicPlatform.ready(function() {
-             onDeviceReady();
-	  
-            });
+			ionic.Platform.ready(onDeviceReady);
 		    $scope.score = 0;
 			$scope.target = 20;
 			$scope.correct = 0;
@@ -123,7 +105,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 						 
 			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-				if (typeof device != "undefined" && device.platform == "Android")									
+				if (ionic.Platform.isAndroid())									
 					navigator.vibrate([100,100,100]);
 					                $scope.score++;
 									$scope.correct++;
@@ -131,7 +113,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					
 			    } 
 				else {
-				if (typeof device != "undefined" && device.platform == "Android")									
+				if (ionic.Platform.isAndroid())									
 					navigator.vibrate([500]);
   				    jQuery(event.target).addClass("wrong");
 					$scope.wrong++;
