@@ -98,14 +98,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 						 
 			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-									navigator.vibrate([500,500,500]);
+									navigator.vibrate([100,100,100]);
 					                $scope.score++;
 									$scope.correct++;
  									$scope.riddle = generateRiddle(tables);
 					
 			    } 
 				else {
-					navigator.vibrate(1000);
+					navigator.vibrate(500);
   				    jQuery(event.target).addClass("wrong");
 					$scope.wrong++;
 					if ($scope.score > 0) 
