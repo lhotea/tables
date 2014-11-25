@@ -61,9 +61,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		/* controllers */
 		app.controller('gameController', function($scope, $ionicPopup, $state, tables) {
 		    $scope.score = 0;
+			$scope.target = 20;
+			$scope.correct = 0;
+			$scope.wrong = 0;
+			
 			var numResults = 5;
 			var maxMultiple = 12;
-			
 			var getUniquePossibleResult = function (arr, tables, max) {
 				var val = 0;
 				do {
@@ -93,20 +96,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 			$scope.riddle = generateRiddle(tables);
 						 
-			$scope.check = function (answer) { 
+			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-					                $scope.score++; 
+									navigator.vibrate(1000,1000,1000,1000,1000);
+					                $scope.score++;
+									$scope.correct++;
  									$scope.riddle = generateRiddle(tables);
 					
 			    } 
 				else {
-					if ($scope.score > 0)
+					navigator.vibrate(3000);
+  				    jQuery(event.target).addClass("wrong");
+					$scope.wrong++;
+					if ($scope.score > 0) 
 						$scope.score--;
+					
 				}
-				if ( $scope.score == 20 ) {
+				if ( $scope.score == $scope.target ) {
 				  var bravo = $ionicPopup.alert({
                    title: 'Bravo!',
-                   template: 'Du hast es geschafft'
+                   template: 'Du hast es geschafft mit ' + $scope.wrong + ' Fehler.'
                   });
 				  bravo.then(function() { $state.go('list'); });
 				}			

@@ -12,7 +12,7 @@
 	
 <div class="row responsive-sm">
 	<div class="col col-center center" ng-repeat="answer in riddle.answers">
-		<div class="answerButton" ng-click="check({{answer.value}})">{{answer.value}}</div>
+		<div class="answerButton" ng-click="check($event,{{answer.value}})">{{answer.value}}</div>
 	</div>
 </div>
     
@@ -24,8 +24,18 @@
   <i class="icon ion-happy"></i>
 </div>
 	</div>
-	</div>	
-</ion-content>
+	</div>
+<div class="card">
+  <div class="item item-text-wrap">  
+    Du musst noch {{target - score}} schaffen !
+  </div>
+  <div class="item item-text-wrap">  
+    Richtige Antworten : {{correct}}
+  </div>
+  <div class="item item-text-wrap">  
+    Falsche Antworten : {{wrong}}
+  </div>
+</div></ion-content>
 
 	
 </ion-view>
