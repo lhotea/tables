@@ -16,7 +16,6 @@
         Arnaud L'Hôte  
     </author>
 		
-<gap:plugin name="org.apache.cordova.app" />
 <gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="org.apache.cordova.vibration" />
 		
