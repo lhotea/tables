@@ -126,7 +126,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-		app.controller('listController', function($scope,$state,$ionicPopup,tables) {
+		app.controller('listController', function($scope,$state,$ionicPlatform,$ionicPopup,tables) {
 
 			$scope.tableList = [
     { text: "1", checked: true },
@@ -157,7 +157,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			$scope.endGame = function(){
              $ionicPopup.confirm({
              title: 'Spiel benden ?',
-             content: 'Willst du das spiel wirklich beenden ?'
+             content: 'Willst du das Spiel wirklich beenden ?'
              }).then(function(res) {
              if(res) {
               $ionicPlatform.exitApp();
