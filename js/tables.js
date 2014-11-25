@@ -1,32 +1,17 @@
 
-function onBackKeyPress(e) {
-		alert("Wanna go back (1)?");
-		e.preventDefault();
-	    e.stopPropagation();
-        return false;
-}
-
 var app = angular.module('tables', ['ionic']);
 
 
 app.run(
 function($ionicPlatform) {
   $ionicPlatform.ready( function() {
-   alert("Hello Antoine");
-   //$ionicPlatform.on("backbutton", onBackKeyPress);
-   //$ionicPlatform.onHardwareBackButton(function (e) {
    $ionicPlatform.registerBackButtonAction( function (e) {
-
-	  alert("Wanna go back (1)?");
 		e.preventDefault();
 	    e.stopPropagation();
         return false;
     },1000);  
   });
-  /*$ionicPlatform.registerBackButtonAction(onBackKeyPress,1000);
-  $ionicPlatform.on("backbutton", onBackKeyPress);
-  $ionicPlatform.onHardwareBackButton(onBackKeyPress);
-*/
+
 });	
  
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -61,25 +46,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 		/* services to share data between views */
 
-app.service( 'HardwareBackButtonManager', function($ionicPlatform){
-  this.deregister = undefined;
- 
-  this.disable = function(){
-    this.deregister = $ionicPlatform.registerBackButtonAction(function(e){
-	e.preventDefault();
-	return false;
-    }, 101);
-  };
- 
-  this.enable = function(){
-    if( this.deregister !== undefined ){
-      this.deregister();
-      this.deregister = undefined;
-    }
-  };
-  return this;
-});
-
 
 		app.service('listService', function($q) {
 			return {
@@ -90,10 +56,8 @@ app.service( 'HardwareBackButtonManager', function($ionicPlatform){
 			};
 		});
 		/* controllers */
-		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables, HardwareBackButtonManager) {
+		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
 
-	
-	HardwareBackButtonManager.disable();
 				
 			$scope.score = 0;
 			$scope.target = 20;
@@ -133,7 +97,7 @@ app.service( 'HardwareBackButtonManager', function($ionicPlatform){
 						 
 			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-				if (ionic.Platform.isAndroid())									
+				//if (ionic.Platform.isAndroid())									
 					navigator.vibrate([100,100,100]);
 					                $scope.score++;
 									$scope.correct++;
@@ -141,7 +105,7 @@ app.service( 'HardwareBackButtonManager', function($ionicPlatform){
 					
 			    } 
 				else {
-				if (ionic.Platform.isAndroid())									
+				//if (ionic.Platform.isAndroid())									
 					navigator.vibrate([500]);
   				    jQuery(event.target).addClass("wrong");
 					$scope.wrong++;
@@ -162,8 +126,7 @@ app.service( 'HardwareBackButtonManager', function($ionicPlatform){
 
 });
 
-		app.controller('listController', function($scope,$state,$ionicPlatform,tables, HardwareBackButtonManager) {
-	HardwareBackButtonManager.disable();
+		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
 
 			$scope.tableList = [
     { text: "1", checked: true },
