@@ -80,7 +80,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			};
 		});
 		/* controllers */
-		app.controller('gameController', function($scope, $ionicPopup, $state, tables) {
+		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
+			$ionicPlatform.ready(function() {
+             document.addEventListener("backbutton", onBackKeyPress, false);
+	  
+            });
 		    $scope.score = 0;
 			$scope.target = 20;
 			$scope.correct = 0;
@@ -119,14 +123,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 						 
 			$scope.check = function (event,answer) {
 				if (answer == $scope.riddle.table * $scope.riddle.times ) {
-									navigator.vibrate([100,100,100]);
+//									navigator.vibrate([100,100,100]);
 					                $scope.score++;
 									$scope.correct++;
  									$scope.riddle = generateRiddle(tables);
 					
 			    } 
 				else {
-					navigator.vibrate(500);
+//					navigator.vibrate(500);
   				    jQuery(event.target).addClass("wrong");
 					$scope.wrong++;
 					if ($scope.score > 0) 
@@ -146,8 +150,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-		app.controller('listController', function($scope,$state,tables) {
-			
+		app.controller('listController', function($scope,$state,$ionicPlatform,tables) {
+			$ionicPlatform.ready(function() {
+             document.addEventListener("backbutton", onBackKeyPress, false);
+	  
+            });
+
 			$scope.tableList = [
     { text: "1", checked: true },
     { text: "2", checked: false },
