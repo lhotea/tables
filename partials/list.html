@@ -7,11 +7,13 @@
 </ion-nav-buttons>
 	
 <ion-content>
+<ion-scroll zooming="true">	
 <ion-checkbox ng-repeat="table in tableList"
                       ng-model="table.checked" 
                       ng-checked="table.checked">
           {{ table.text }}
-</ion-checkbox>              
+</ion-checkbox>
+               
 <button ng-click="startGame()" class="button button-block button-positive">
   Starten
 </button>
@@ -22,7 +24,7 @@
 		Entwickler: Arnaud  Tester: Antoine, Sophie.
 	</div>
 	</div>
-
+</ion-scroll>
 </ion-content>
 
 
