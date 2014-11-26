@@ -126,7 +126,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 		app.controller('listController', function($scope,$state,$ionicPlatform,$ionicPopup,tables) {
-
 			$scope.canExit = ionic.Platform.isAndroid();
 			$scope.tableList = [
     { text: "1", checked: true },
