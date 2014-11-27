@@ -8,11 +8,23 @@
 	
 <ion-content>
 <ion-scroll zooming="true">	
-<ion-checkbox ng-repeat="table in tableList"
+	<div class="row responsive-sm">
+	<div class="col">
+<ion-checkbox ng-repeat="table in tableList" ng-if="$even"
                       ng-model="table.checked" 
                       ng-checked="table.checked">
           {{ table.text }}
 </ion-checkbox>
+	</div>
+	<div class="col">
+<ion-checkbox ng-repeat="table in tableList" ng-if="$odd"
+                      ng-model="table.checked" 
+                      ng-checked="table.checked">
+          {{ table.text }}
+</ion-checkbox>
+	</div>
+
+	</div>
                
 <button ng-click="startGame()" class="button button-block button-positive">
   Starten

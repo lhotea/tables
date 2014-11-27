@@ -5,6 +5,7 @@ var app = angular.module('tables', ['ionic']);
 app.run(
 function($ionicPlatform) {
   $ionicPlatform.ready( function() {
+   StatusBar.hide();
    $ionicPlatform.registerBackButtonAction( function (e) {
 		e.preventDefault();
 	    e.stopPropagation();

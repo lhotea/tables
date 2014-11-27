@@ -18,6 +18,7 @@
 		
 <gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="org.apache.cordova.vibration" />
+<gap:plugin name="org.apache.cordova.statusbar" />
 		
 <gap:platform name="ios" />
 <gap:platform name="android" />
