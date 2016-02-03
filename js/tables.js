@@ -3,7 +3,7 @@ var app = angular.module('tables', ['ionic']);
 
 
 app.run(
-function($ionicPlatform) {
+function($ionicPlatform,$ionicScrollDelegate) {
   $ionicPlatform.ready( function() {
    StatusBar.hide();
    $ionicPlatform.registerBackButtonAction( function (e) {
@@ -11,6 +11,7 @@ function($ionicPlatform) {
 	    e.stopPropagation();
         return false;
     },1000);  
+    $ionicScrollDelegate.$getByHandle('scroll-view').resize();
   });
 
 });	
