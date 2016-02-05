@@ -11,7 +11,8 @@ function($ionicPlatform,$ionicScrollDelegate) {
 	    e.stopPropagation();
         return false;
     },1000);  
-    $ionicScrollDelegate.$getByHandle('scroll-view').resize();
+    $ionicScrollDelegate.$getByHandle('scroll-view').resize();    
+    $ionicScrollDelegate.$getByHandle('scroll-view').zoomTo(0.5);
   });
 
 });	
