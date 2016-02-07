@@ -13,8 +13,6 @@ function($ionicPlatform,$ionicScrollDelegate) {
     },1000);  
     $ionicScrollDelegate.$getByHandle('scroll-view').resize();    
     $ionicScrollDelegate.$getByHandle('scroll-view').zoomTo(0.5);
-    $ionicScrollDelegate.$getByHandle('scroll-view-game').resize();    
-    $ionicScrollDelegate.$getByHandle('scroll-view-game').zoomTo(0.5);
     
   });
 
@@ -62,7 +60,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			};
 		});
 		/* controllers */
-		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, tables) {
+		app.controller('gameController', function($scope, $ionicPopup, $state, $ionicPlatform, $ionicScrollDelegate, tables) {
+			$scope.$on('$ionicView.loaded', function (viewInfo, state) {
+                            $ionicScrollDelegate.$getByHandle('scroll-view-game').resize();    
+			    $ionicScrollDelegate.$getByHandle('scroll-view-game').zoomTo(0.5);
+				
+			});
 
 			$scope.score = 0;
 			$scope.target = 20;
